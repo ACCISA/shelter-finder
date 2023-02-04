@@ -12,30 +12,32 @@ conn = sqlite3.connect('shelter_finder.db')
 c = conn.cursor()
 
 
-def create_user(conn, user):
+def create_user(username, password, email, shelter):
     sql = ''' INSERT INTO user(username,password,email,shelter)
               VALUES(?,?) '''
     for parameter in user:
         if  isinstance(parameter,str):
             raise Exception("a parameter in user is not a string")
-    cur = conn.cursor()
-    cur.execute(sql, user)
+    c.execute(sql, username, password, email, shelter)
     conn.commit()
-    return cur.lastrowid
 
 
-def create_shelter(conn, shelter):
+def create_shelter(shelter, name, adress, email):
 
     sql = ''' INSERT INTO shelter(name,adress,email,tel)
               VALUES(?,?,?,?) '''
     
-    for parameter in shelter:
-        if  isinstance(parameter,str):
-            raise Exception("a parameter in shelter is not a string")
-    cur = conn.cursor()
-    cur.execute(sql, shelter)
+
+    args = [shelter, name, adress, email]
+
+    for arg in range(len(args)):
+        if not isinstance(arg, str):
+            raise Exception("Shelter must be a string")
+        if arg[i] == None or ar[i] == "":
+            raise Exception("Arguments cannot be null")
+
+    c.execute(sql, shelter, name, adress, email)
     conn.commit()
-    return cur.lastrowid
 
 def create_shelter_info(conn, shelter_info):
 
@@ -45,22 +47,13 @@ def create_shelter_info(conn, shelter_info):
     if  isinstance(shelter_info[0],str):
         raise Exception("shelter in shelter_info is not a string")
 
-    if  shelter_info[1] != 0 and shelter_info[1] != 1:
-        raise Exception("shower in shelter_info is not a 0 or 1")
+    for i in range(len(shelter_info)):
+        if i == 0: continue
+        if shelter_info[i] != 0 or shelter_info[i] != 1:
+            raise Exception("Shelter info must be 0 or 1")
 
-    if  shelter_info[2] != 0 and shelter_info[2] != 1:
-        raise Exception("bed in shelter_info is not a 0 or 1")
-
-    if  shelter_info[3] != 0 and shelter_info[3] != 1:
-        raise Exception("food in shelter_info is not a 0 or 1")
-
-    if  shelter_info[4] != 0 and shelter_info[4] != 1:
-        raise Exception("therapist in shelter_info is not a 0 or 1")
-
-    cur = conn.cursor()
-    cur.execute(sql, shelter_info[0], shelter_info[1], shelter_info[2], shelter_info[3])
+    c.execute(sql, shelter_info[0], shelter_info[1], shelter_info[2], shelter_info[3], shelter_info[4])
     conn.commit()
-    return cur.lastrowid
 
 def create_database():
     c.execute('''
