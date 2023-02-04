@@ -9,6 +9,19 @@ def CreateUser(Username, Password):
     return username, password
 
 sqlite3.connect('shelter_finder.db')
+conn = sqlite3.connect('shelter_finder.db') 
+c = conn.cursor()
 
+c.execute('''
+          CREATE TABLE IF NOT EXISTS users
+          ([product_id] INTEGER PRIMARY KEY, [product_name] TEXT)
+          ''')
+          
+c.execute('''
+          CREATE TABLE IF NOT EXISTS shelters
+          ([product_id] INTEGER PRIMARY KEY, [price] INTEGER)
+          ''')
+                     
+conn.commit()
 
 
