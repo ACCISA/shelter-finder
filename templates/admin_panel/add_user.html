@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/static/admin_panel/add_user.css">
+</head>
+<body>
+    <div id="adduser"><form action="/admin_panel" method="POST">
+        <input class="inputClass" type="text" name="username" placeholder="Username">
+        <input class="inputClass" type="password" name="password" placeholder="Password">
+        <input class="inputClass" type="password" name="confirm_password" placeholder="Confirm Password">
+        <input class="inputClass" type="text" name="email" placeholder="Email">
+        <input class="inputClass" type="text" name="shelter_name" placeholder="Shelter Name">
+        <input class="inputClass" id="submitBtn" type="submit">
+    </form></div>
+    
+</body>
+</html>
