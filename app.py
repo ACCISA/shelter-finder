@@ -20,11 +20,11 @@ def returnLogin():
     confirm_password = request.form.get('confirm_password')
 
     if request.method == 'GET':
-        pass
+        return render_template("login.html")
     if request.method == 'POST':
-        if username == None and password == None and confirm_password == None:
+        if username == None or password == None or confirm_password == None:
             return render_template("login.html", warning={'message':'Please provide a valid username and password.'})
-        if passowrd != confirm_password:
+        if passowrd != confirm_password: # TO REMOVE
             return render_template("login.html", warning={'message':'Password do not match.'})
         if auth.verifyRoot(username, password):
             tokenR = token_auth.create()
