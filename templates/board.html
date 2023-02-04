@@ -1,23 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shelter Finder board</title>
-    <link rel="stylesheet" href="/statics/board.css">
-</head>
-<body>
-    
-<div id="main-div">
+{% block content %}
 
-    <div id="top-div">
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Shelter Finder board</title>
+        <link rel="stylesheet" href="/static/board.css">
+    </head>
+    <body>
+
+    <div id="main-div">
+
+        <div id="top-div">
+
+            <div id="name">
+                {{ shelter.name }}
+            </div>
+
+            <img alt="Shelter image" src="{{ shelter.image }}">
+
+        </div>
+
+        <hr>
+
+        <div id="bottom-div">
+            This is the bottom div
+        </div>
 
     </div>
 
-    <div id="bottom-div">
+    </body>
+    </html>
 
-    </div>
-
-</div>
-
-</body>
-</html>
+{% endblock %}
