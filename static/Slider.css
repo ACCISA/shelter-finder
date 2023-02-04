@@ -75,9 +75,10 @@ html {
   box-sizing: inherit;
 }
 
+
 .column {
-  float: left;
-  width: 33.3%;
+  float:inline-start;
+  width: 15%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
@@ -138,7 +139,6 @@ html {
   padding: 20px;
   border: #717171;
 }
-
 
 
 /* The dots/bullets/indicators */

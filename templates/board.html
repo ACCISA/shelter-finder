@@ -1,6 +1,4 @@
-{% block content %}
-
-    <html lang="en">
+ <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Shelter Finder board</title>
@@ -23,12 +21,25 @@
         <hr>
 
         <div id="bottom-div">
-            This is the bottom div
+            <div id="map">
+
+                <iframe
+                        width="400"
+                        height="450"
+                        style="border:0"
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBSJNoW5llJQRKszzkYCNx3TzdgopIklA4
+    &destination={{ shelter.latitude }},{{ shelter.longitude }}
+    &origin=45.50418693241608,-73.61360121950645
+    &mode=walking&zoom=15
+">
+                </iframe>
+            </div>
         </div>
 
     </div>
 
     </body>
     </html>
-
-{% endblock %}
