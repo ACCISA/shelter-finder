@@ -2,8 +2,12 @@ from flask import Flask, request, jsonify, make_response, render_template, sessi
 from datetime import datetime, timedelta
 from functools import wraps
 import database
+import auth
+import token_auth
+from auth import auth_required
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'bbb07774f2284417a9303684df7c1470'
+
 
 @app.route("/")
 def returnMainWebsite():
@@ -11,34 +15,63 @@ def returnMainWebsite():
 
 @app.route("/login", methods=['GET','POST'])
 def returnLogin():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    confirm_password = request.form.get('confirm_password')
+
     if request.method == 'GET':
         pass
     if request.method == 'POST':
-        pass
-
-@app.route("/login", methods=['GET','POST'])
-def returnPanel():
-    pass
+        if username == None and password == None and confirm_password == None:
+            return render_template("login.html", warning={'message':'Please provide a valid username and password.'})
+        if passowrd != confirm_password:
+            return render_template("login.html", warning={'message':'Password do not match.'})
+        if auth.verifyRoot(username, password):
+            tokenR = token_auth.create()
+            token_auth.store(tokenR)
+            return render_template("admin_panel/admin.html")
+        if auth.verifyUser(username, password):
+            # user_info = database.UserInfo(username) TODO
+            tokenR = token_auth.create()
+            token_auth.store(tokenR)
+        # TODO    return render_template("user_panel/user.html",info={'username':username,'shelter':user_info[0]})        
+            return render_template("user_panel/user.html")
 
 @app.route("/board", methods=['GET','POST'])
 def returnBoard():
-    
     return render_template("board.html", shelter = {'name':'abc'})
 
 @app.route("/admin_panel", methods=['GET','POST'])
 def returnAdminPanel():
+    tokenR = request.args.get('token')
+    if request.method == 'GET':
+        if not auth.auth_required(tokenR):
+            return "Not Authed"
+        return render_template("admin_panel/admin.html")
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        confirm_pasword = request.form.get('confirm_password')
-        email = request.form.get('email')
-        shelter_name = request.form.get('shelter_name')
-        info = [username, password, confirm, email,shelter_name]
+        if request.form['add_user'] == "Add User":
+            return render_template("admin_panel/add_user.html")
+        # username = request.form.get('username')
+        # password = request.form.get('password')
+        # confirm_pasword = request.form.get('confirm_password')
+        # email = request.form.get('email')
+        # shelter_name = request.form.get('shelter_name')
+        # info = [username, password, confirm_password, email,shelter_name]
 
-        print(username, password, confirm_pasword, email, shelter_name)
-    return render_template("admin.html")
+        # print(username, password, confirm_pasword, email, shelter_name)
+    return render_template("admin_panel/admin.html")
 
+@app.route("/test",methods=['GET','POST'])
+def testing():
+    if request.method == 'GET':
+        return render_template('test/test.html')
+    if request.form.get('test') == "yes":
+        return render_template("test/test_redirect.html")
 
+@app.route("/testdone",methods=['GET','POST'])
+def testdone():
+    print("this ")
+    return "done"
 
 def Debug():
     database.create_database()
