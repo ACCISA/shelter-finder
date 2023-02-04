@@ -1,5 +1,6 @@
 import hashlib
 import sqlite3
+from verification import verify_user
 
 def Hash(word):
     #
@@ -13,13 +14,18 @@ c = conn.cursor()
 
 
 def create_user(username, password, email, shelter):
+    if(verify_user(username)):
+        return False
+    user=[username,password,email,shelter]
     sql = ''' INSERT INTO user(username,password,email,shelter)
-              VALUES(?,?) '''
+              VALUES(?,?,?,?) '''
+        
     for parameter in user:
         if  isinstance(parameter,str):
             raise Exception("a parameter in user is not a string")
     c.execute(sql, username, password, email, shelter)
     conn.commit()
+    return True
 
 
 def create_shelter(shelter, name, adress, email):
@@ -30,10 +36,10 @@ def create_shelter(shelter, name, adress, email):
 
     args = [shelter, name, adress, email]
 
-    for arg in range(len(args)):
+    for arg in args:
         if not isinstance(arg, str):
             raise Exception("Shelter must be a string")
-        if arg[i] == None or ar[i] == "":
+        if arg == None or arg == "":
             raise Exception("Arguments cannot be null")
 
     c.execute(sql, shelter, name, adress, email)
@@ -83,6 +89,15 @@ def create_database():
             [food] BOOLEAN NOT NULL CHECK (food IN (0,1)),
             [therapist] BOOLEAN NOT NULL CHECK (therapist IN (0,1))
             )
-            ''')      
+            ''')
+    c.execute('''
+            CREATE TABLE IF NOT EXISTS auth
+            ([shelter_id] INTEGER PRIMARY KEY, 
+            [name] VARCHAR(100) NOT NULL,
+            [adress] VARCHAR(100) NOT NULL,
+            [email] VARCHAR(100) NOT NULL,
+            [tel] VARCHAR(100) NOT NULL
+            )
+            ''')       
     conn.commit()
 
