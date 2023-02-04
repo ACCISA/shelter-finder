@@ -3,11 +3,20 @@
 html,body{
 background-color : #DB324D
 }
-h2{
+
+.whiteBackground{
+  background-color: #F3F7F0 ;
+  height:30px;
+}
+
+h1{
+  background-color: #F3F7F0;
 font-weight: bold;
 text-align: center;
 text-decoration: wavy;
 color: black;
+padding: 0;
+margin: 0;
 }
 html{
 color: #F3F7F0;
@@ -40,6 +49,10 @@ text-align: center;
   height:60px;
   background-color: transparent;
 }
+.superBreak{
+  height: 550px;
+  background-color: transparent;
+}
 /* Number text (1/7) */
 .numbertext {
 color: #f2f2f2;
@@ -70,8 +83,9 @@ html {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.3);
   margin: 8px;
+  
 }
 
 
@@ -158,50 +172,23 @@ to {opacity: 1}
 .text {font-size: 11px}
 }
 
-
+/* split mission part */
 .leftMission{
+  text-align: justify;
+  text-justify: inter-word;
   float: left;
   width: 50%;
   border: solid black;
+  height : 500px;
+  padding: 30px;
 }
 
 .rightMission{
   float: right;
   width: 50%;
   border: solid black;
-
+  height : 500px;
+  height : 500px;
+  padding: 30px;
 }
 
-/*split the mission part*/
-.split {
-  height: 100%;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.left {
-  left: 0;
-  background-color: #111;
-}
-
-.right {
-  right: 0;
-  background-color: red;
-}
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.centered img {
-  width: 150px;
-  border-radius: 50%;
-}
