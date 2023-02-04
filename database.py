@@ -11,17 +11,6 @@ sqlite3.connect('shelter_finder.db')
 conn = sqlite3.connect('shelter_finder.db') 
 c = conn.cursor()
 
-c.execute('''
-          CREATE TABLE IF NOT EXISTS users
-          ([product_id] INTEGER PRIMARY KEY, [product_name] TEXT)
-          ''')
-          
-c.execute('''
-          CREATE TABLE IF NOT EXISTS shelters
-          ([product_id] INTEGER PRIMARY KEY, [price] INTEGER)
-          ''')
-                     
-conn.commit()
 
 def create_user(conn, user):
     sql = ''' INSERT INTO user(username,password)
@@ -43,12 +32,11 @@ def create_shelter(conn, shelter):
 
 def create_database():
     c.execute('''
-            CREATE TABLE IF NOT EXISTS users
-            ([user_id] INTEGER PRIMARY KEY, 
-            [username] VARCHAR(110) NOT NULL, 
-            [password] VARCHAR(110) NOT NULL, 
-            [email] VARCHAR(50) NOT NULL,
-            [shelter] VARCHAR(50)) NOT NULL
+            CREATE TABLE IF NOT EXISTS users  (user_id INTEGER PRIMARY KEY, 
+            username VARCHAR(110) NOT NULL, 
+            password VARCHAR(110) NOT NULL, 
+            email VARCHAR(50) NOT NULL,
+            shelter VARCHAR(50) NOT NULL)
             ''')
             
     c.execute('''
