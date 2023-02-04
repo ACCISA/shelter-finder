@@ -36,6 +36,10 @@ width: 100%;
 text-align: center;
 }
 
+.break{
+  height:60px;
+  background-color: transparent;
+}
 /* Number text (1/7) */
 .numbertext {
 color: #f2f2f2;
@@ -44,6 +48,84 @@ padding: 8px 12px;
 position: absolute;
 top: 0;
 }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+
+
+#about-us{ 
+  color: black;
+  background-color: #F3F7F0;
+  width: 50%;
+  height: 400px;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 20px;
+  border: #717171;
+}
+
+
 
 /* The dots/bullets/indicators */
 .dot {
@@ -74,4 +156,52 @@ to {opacity: 1}
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
 .text {font-size: 11px}
+}
+
+
+.leftMission{
+  float: left;
+  width: 50%;
+  border: solid black;
+}
+
+.rightMission{
+  float: right;
+  width: 50%;
+  border: solid black;
+
+}
+
+/*split the mission part*/
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: #111;
+}
+
+.right {
+  right: 0;
+  background-color: red;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
 }
