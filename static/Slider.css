@@ -212,7 +212,7 @@ html {
   text-justify: inter-word;
   float: left;
   width: 50%;
-  border: solid black;
+  border:solid black;
   height: 500px;
   padding: 30px;
 }
