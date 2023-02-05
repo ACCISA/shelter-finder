@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from functools import wraps
 import database
 import auth
+import datainsert
+import shelter
 import token_auth
 from auth import auth_required
 app = Flask(__name__)
@@ -78,9 +80,15 @@ def Debug():
     database.create_database()
     print("db created")
     print(database.get_shelters())
+    datainsert.create_bs_shelters()
+    shelter.closer_shelter()
 
+def test_connection():
+    with app.app_context():
+        Debug()
 
-Debug()
+# Debug()
+test_connection()
 
 if __name__ == "__main__":
     app.run(debug=True)

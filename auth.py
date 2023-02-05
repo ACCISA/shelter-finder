@@ -4,13 +4,6 @@ from functools import wraps
 import database
 import token_auth
 import func
-import sqlite3
-
-conn = sqlite3.connect('shelter_finder.db') 
-c = conn.cursor()
-def connection():
-    conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
-    return conn 
 
 def auth_required(tokenR):
     if not token_auth.find(tokenR):
@@ -18,17 +11,16 @@ def auth_required(tokenR):
     return True
 
 def verifyUser(username, password):
-    c.execute("SELECT username,password FROM users WHERE username=%(username)s",{"username":username}) 
-    result = c.fetchone()
-    if result == None: 
-        return False
-    if result[0] == username and result[1] == database.Hash(password):
-        return True
-    return False
+    username = database.Hash(username)
+    password = database.Hash(password)
+    # TODO RICHARD
+    # find if the username and passowrd are true
+    # if true return True
 
 def verifyRoot(username, password):
+    username = func.Hash(username)
     password = func.Hash(password)
-    if username == "admin" and password == "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2":
+    if username == "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918" and password == "4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2":
         print('[APP] Root access granted')
         return True
     return False
