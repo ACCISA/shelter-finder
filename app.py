@@ -134,13 +134,7 @@ def testdone():
 def Debug():
     database.create_database()
     print("db created")
-<<<<<<< HEAD
-=======
-    print(database.get_shelters())
-    datainsert.create_bs_shelters()
-    datainsert.create_bs_shelters_info()
-    shelter.closer_shelter()
->>>>>>> 5ab903c9c6d39e65b5eeb8596d07424c74bc1fb4
+
 
 def test_connection():
     with app.app_context():
