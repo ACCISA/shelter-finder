@@ -25,8 +25,8 @@ def create_user(username, password, email, shelter):
     return True
 
 
-def create_shelter(name, adress, email, tel):
-    args = [name, adress, email, tel]
+def create_shelter(name, long, lat, adress, email, tel):
+    args = [name, long, lat, adress, email, tel]
     if (verify_shelter(args)):
         return False
     sql = ''' INSERT INTO shelter(name,long,lat,email,tel)
@@ -36,12 +36,16 @@ def create_shelter(name, adress, email, tel):
     
 
     for arg in args:
-        if not isinstance(arg, str):
-            raise Exception("Shelter must be a string")
         if arg == None or arg == "":
             raise Exception("Arguments cannot be null")
+        if arg==long or arg==lat:
+            if not isinstance(arg, float):
+                raise Exception("Longitude or Latitude has to be a number") 
+        if not isinstance(arg, str):
+            raise Exception("Shelter must be a string")
+        
 
-    c.execute(sql, name, adress, email, tel)
+    c.execute(sql, name, long, lat, adress, email, tel)
     conn.commit()
     return True
 
