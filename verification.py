@@ -16,7 +16,7 @@ def verify_shelter(name):
     
 
 def verify_user(user):
-    u=Hash(user)
+    u=user
     c.execute("SELECT user_id FROM users WHERE user=%(u)s",{"u":u}) 
     result= c.fetchone()
     conn.close()

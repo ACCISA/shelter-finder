@@ -19,7 +19,7 @@ def create_user(username, password, email, shelter):
     if(verify_user(username)):
         return False
     c=connection()
-    user=[username,password,email,shelter]
+    user=[username,Hash(password),email,shelter]
     sql = ''' INSERT INTO user(username,password,email,shelter)
               VALUES(?,?,?,?) '''
         
