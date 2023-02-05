@@ -77,6 +77,24 @@ def create_shelter_info(shelter_info):
     conn.commit()
     conn.close()
 
+def update_shelter_info(shelter_info):
+    co=connection()
+    c=co.cursor()
+    sql = ''' UPDATE shelter_info SET shelter={},shower={},bed={},food={},therapist={})
+              '''.format(shelter_info[0],shelter_info[1],shelter_info[2],shelter_info[3],shelter_info[5])
+    
+    if  isinstance(shelter_info[0],str):
+        raise Exception("shelter in shelter_info is not a string")
+
+    for i in range(len(shelter_info)):
+        if i == 0: continue
+        if shelter_info[i] != 0 or shelter_info[i] != 1:
+            raise Exception("Shelter info must be 0 or 1")
+
+    c.execute((sql,))
+    co.commit()
+    co.close()
+
 def get_shelters():
     c=connection()
     c.execute("SELECT * FROM shelters") 
