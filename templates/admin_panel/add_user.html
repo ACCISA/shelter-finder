@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="/static/admin_panel/add_user.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Panel</title>
+        <link rel="stylesheet" href="/static/admin_panel/add_user.css">
+    </head>
 
-<body>
+    <body>
 
-    <div class="box">
-        <div class="user-img"></div>
+        <div class="box">
+            <div class="user-img"></div>
 
         <div id="adduser">
             <form action="/admin_panel/add_user" method="POST">
                 <ul class="list">
 
-                    <li>
-                        <h2>Ajouter un utilisateur</h2>
-                    </li>
-                    <li>
-                        <input class="inputClass" type="text" name="username" placeholder="Username">
-                    </li>
+                        <li>
+                            <h2>Ajouter un utilisateur</h2>
+                        </li>
+                        <li>
+                            <input class="inputClass" type="text"
+                                name="username" placeholder="Nom d'utilisateur">
+                        </li>
 
-                    <li> <input type="password" class="inputClass"  name="password" placeholder="Password"></li>
+                    <li> <input type="password" class="inputClass"  name="password" placeholder="Mot de pass"></li>
                     <li><input  type="password"class="inputClass"  name="confirm_password"
-                            placeholder="Confirm Password"></li>
-                    <li> <input type="text" class="inputClass" name="email" placeholder="Email"></li>
-                    <li><input type="text" class="inputClass"  name="shelter_name" placeholder="Shelter Name"></li>
-                    <li> <input type="submit" class="inputClass" id="submitBtn" ></li>
-                    <li><p style="color: red;">{{warning.msg}}</p></li>
+                            placeholder="Confirmer mot de pass"></li>
+                    <li> <input type="text" class="inputClass" name="email" placeholder="Courriel"></li>
+                    <li><input type="text" class="inputClass"  name="shelter_name" placeholder="Nom d'abris"></li>
+                    <li> <input type="submit" class="inputClass" id="submitBtn"value="Soumettre" ></li>
+
                 </ul>
             </form>
         </div>
     </div>
 
 
-</body>
+    </body>
 
 </html>
