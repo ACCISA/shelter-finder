@@ -1,65 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap%27');
 
-html,body{
-background-color : #DB324D
+html,
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #DB324D
 }
 
-.whiteBackground{
-  background-color: #F3F7F0 ;
-  height:30px;
-}
-
-h1{
+.whiteBackground {
   background-color: #F3F7F0;
-font-weight: bold;
-text-align: center;
-text-decoration: wavy;
-color: black;
-padding: 0;
-margin: 0;
+  height: 30px;
 }
-html{
-color: #F3F7F0;
+
+h1 {
+  background-color: #F3F7F0;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: wavy;
+  color: black;
+  padding: 0;
+  margin: 0;
 }
-* {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif;}
-.mySlides {display: none;}
-img {vertical-align: middle;}
+
+html {
+  color: #F3F7F0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, sans-serif;
+}
+
+.mySlides {
+  display: none;
+}
+
+img {
+  vertical-align: middle;
+}
 
 /* Slideshow container */
 .slideshow-container {
-max-width: 100%;
-max-height: 20%;
-position: relative;
-margin: auto;
+  max-width: 100%;
+  max-height: 20%;
+  position: relative;
+  margin: auto;
 }
 
 /* Caption text */
 .text {
-color: #f2f2f2;
-font-size: 15px;
-padding: 8px 12px;
-position: absolute;
-bottom: 8px;
-width: 100%;
-text-align: center;
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
 }
 
-.break{
-  height:60px;
+.break {
+  height: 60px;
   background-color: transparent;
 }
-.superBreak{
+
+.superBreak {
   height: 550px;
   background-color: transparent;
 }
+
 /* Number text (1/7) */
 .numbertext {
-color: #f2f2f2;
-font-size: 12px;
-padding: 8px 12px;
-position: absolute;
-top: 0;
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
 }
 
 body {
@@ -71,13 +88,16 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 
+
 .column {
-  float:inline-start;
+  float: inline-start;
   width: 15%;
   margin-bottom: 16px;
   padding: 0 8px;
@@ -86,15 +106,22 @@ html {
 .card {
   box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.3);
   margin: 8px;
-  
+
 }
 
 
 .container {
   padding: 0 16px;
 }
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
 
-.container::after, .row::after {
+.container::after,
+.row::after {
   content: "";
   clear: both;
   display: table;
@@ -129,7 +156,7 @@ html {
 
 
 
-#about-us{ 
+#about-us {
   color: black;
   background-color: #F3F7F0;
   width: 50%;
@@ -143,52 +170,58 @@ html {
 
 /* The dots/bullets/indicators */
 .dot {
-height: 15px;
-width: 15px;
-margin: 0 2px;
-background-color: #bbb;
-border-radius: 50%;
-display: inline-block;
-transition: background-color 0.6s ease;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
 .active {
-background-color: #717171;
+  background-color: #717171;
 }
 
 /* Fading animation */
 .fade {
-animation-name: fade;
-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
 @keyframes fade {
-from {opacity: .4} 
-to {opacity: 1}
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
+  }
 }
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
-.text {font-size: 11px}
+  .text {
+    font-size: 11px
+  }
 }
 
 /* split mission part */
-.leftMission{
+.leftMission {
   text-align: justify;
   text-justify: inter-word;
   float: left;
   width: 50%;
   border: solid black;
-  height : 500px;
+  height: 500px;
   padding: 30px;
 }
 
-.rightMission{
+.rightMission {
   float: right;
   width: 50%;
   border: solid black;
-  height : 500px;
-  height : 500px;
+  height: 500px;
+  height: 500px;
   padding: 30px;
 }
-
