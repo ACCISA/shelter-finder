@@ -1,4 +1,3 @@
-import hashlib
 import sqlite3
 from verification import verify_user, verify_shelter
 
@@ -20,8 +19,9 @@ def create_user(username, password, email, shelter):
     for parameter in user:
         if  isinstance(parameter,str):
             raise Exception("a parameter in user is not a string")
-    c.execute(sql, username, password, email, shelter)
+    c.execute((sql, username, password, email, shelter))
     conn.commit()
+    conn.close()
     return True
 
 
@@ -45,11 +45,12 @@ def create_shelter(name, long, lat, adress, email, tel):
             raise Exception("Shelter must be a string")
         
 
-    c.execute(sql, name, long, lat, adress, email, tel)
+    c.execute((sql, name, long, lat, adress, email, tel))
     conn.commit()
+    conn.close()
     return True
 
-def create_shelter_info(conn, shelter_info):
+def create_shelter_info(shelter_info):
 
     sql = ''' INSERT INTO shelter_info(shelter,shower,bed,food,therapist)
               VALUES(?,?,?,?,?) '''
@@ -62,8 +63,9 @@ def create_shelter_info(conn, shelter_info):
         if shelter_info[i] != 0 or shelter_info[i] != 1:
             raise Exception("Shelter info must be 0 or 1")
 
-    c.execute(sql, shelter_info[0], shelter_info[1], shelter_info[2], shelter_info[3], shelter_info[4])
+    c.execute((sql, shelter_info[0], shelter_info[1], shelter_info[2], shelter_info[3], shelter_info[4]))
     conn.commit()
+    conn.close()
 
 def create_database():
     c.execute('''
@@ -73,12 +75,13 @@ def create_database():
             email VARCHAR(50) NOT NULL,
             shelter VARCHAR(50) NOT NULL)
             ''')
-            
     c.execute('''
             CREATE TABLE IF NOT EXISTS shelters
             ([shelter_id] INTEGER PRIMARY KEY, 
             [name] VARCHAR(100) NOT NULL,
             [adress] VARCHAR(100) NOT NULL,
+            [long] VARCHAR(50) NOT NULL,
+            [lat] VARCHAR(50) NOT NULL,
             [email] VARCHAR(100) NOT NULL,
             [tel] VARCHAR(100) NOT NULL
             )
@@ -96,12 +99,12 @@ def create_database():
             ''')
     c.execute('''
             CREATE TABLE IF NOT EXISTS auth
-            ([shelter_id] INTEGER PRIMARY KEY, 
-            [name] VARCHAR(100) NOT NULL,
-            [adress] VARCHAR(100) NOT NULL,
-            [email] VARCHAR(100) NOT NULL,
-            [tel] VARCHAR(100) NOT NULL
+            ([auth_id] INTEGER PRIMARY KEY, 
+            [username] VARCHAR(100) NOT NULL,
+            [token] VARCHAR(100) NOT NULL,
+            [expiry] DATETIME NOT NULL
             )
             ''')       
     conn.commit()
+    conn.close()
 

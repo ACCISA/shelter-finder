@@ -1,7 +1,8 @@
 import uuid
 import datetime
-from database import conn
+import sqlite3
 
+conn = sqlite3.connect('shelter_finder.db') 
 c = conn.cursor()
 # create a token
 def create():
@@ -12,6 +13,8 @@ def create():
 def store(username, token):
     sql = "INSERT INTO auth (username, token, expiry) VALUES (%s, %s, %s)"
     c.execute(sql, username, token, datetime.datetime.now())
+    conn.commit()
+    conn.close()
     print("[APP] Token Stored")
 
 # validate the token aka check if it is expired, if it is delete it from the database
@@ -21,6 +24,8 @@ def validate(date, token):
     # token is expired so remove it from the database
     sql = "DELETE FROM auth WHERE token = %s"
     c.execute(sql,token)
+    con.commit()
+    conn.close()
     print("[APP] Token expired, Token delete from database")
     return False
 
@@ -28,10 +33,13 @@ def validate(date, token):
 def find(token):
     c.execute("SELECT username,expiry,token FROM auth WHERE token=%(token)s",{'token':token})
     result = c.fetchone()
+    conn.close()
     if result == None:
         return False
     if validate(result[1],result[2]):
         print("[APP] Token validated for " + result[0])
         return True
+    
     return False
+    
     
