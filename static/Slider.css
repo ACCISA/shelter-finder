@@ -238,5 +238,10 @@ input[type="submit"]{
   border: solid black;
   height: 500px;
   height: 500px;
-  padding: 30px;
+  
+}
+.missionImg{
+  object-fit: cover;
+  width: 100%;
+  background-size: 100%;
 }

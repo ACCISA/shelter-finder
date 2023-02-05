@@ -1,7 +1,7 @@
-/* red :        #DB324D     */
-/*white :       #F3F7F0     */
+/* red :        #DB324D     /
+/white :       #F3F7F0     */
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap%27");
 
 html, body {
     background-color: black;
@@ -12,6 +12,10 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#map {
+    height: 90%;
 }
 
 #main-div {
@@ -25,7 +29,7 @@ html, body {
 }
 
 #top-div {
-
+    height: 100%;
 }
 
 #bottom-div {
@@ -33,6 +37,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 hr {
