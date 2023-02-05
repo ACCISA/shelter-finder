@@ -4,7 +4,6 @@ from verification import verify_user, verify_shelter
 
 from func import Hash
 
-from verification import verify_shelter
 
 
 conn = sqlite3.connect('shelter_finder.db') 
@@ -30,8 +29,8 @@ def create_shelter(name, adress, email, tel):
     args = [name, adress, email, tel]
     if (verify_shelter(args)):
         return False
-    sql = ''' INSERT INTO shelter(name,adress,email,tel)
-              VALUES(?,?,?,?) '''
+    sql = ''' INSERT INTO shelter(name,long,lat,email,tel)
+              VALUES(?,?,?,?,?) '''
     
 
     
