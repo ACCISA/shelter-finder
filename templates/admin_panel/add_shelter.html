@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Shelter</title>
+        <link rel="stylesheet" href="/static/admin_panel/add_shelter.css">
+    </head>
+    <body>
+        <div class="box">
+            <div class="user-img"></div>
+
+            <form action="/admin_panel/add_shelter" method="POST">
+                <ul class="list">
+                    <h2>Ajouter un abri</h2><br>
+                    <div>
+                        <li><input type="text" name="sheter_name"
+                                placeholder="Nom d'abris"></li>
+                        <li> <input type="text" name="shelter_adress"
+                                placeholder="Adresse"></li>
+                        <li> <input type="text" name="shelter_email"
+                                placeholder="Courriel"></li>
+                    </div>
+                    <div>
+                        <li> <input type="text" name="username"
+                                placeholder="Nom d'utilisateur"></li>
+                        <li> <input type="password" name="password"
+                                placeholder="Mot de pass"></li>
+                        <li> <input type="confirm_password"
+                                name="confirm_password"
+                                placeholder="Confirmer mot de pass"></li>
+
+
+                    </div>
+                    <li><input type="submit" value="Ajouter abris"></li>
+                </ul>
+            </form>
+        </div>
+
+
+
+    </body>
+</html>

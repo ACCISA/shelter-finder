@@ -2,11 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Panel</title>
+    <title>Title</title>
+    <link href="/static/admin_panel/user.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Control Panel</h1>
+
+<div id="main-div">
+    <div id="header">
+        <h1>{{info.shelter_name}}</h1>
+        <h1>Pannel de contrôle</h1>
+        <h1>Logout</h1>
+    </div>
+
+    <div id="grand-form">
+
+        <fieldset>
+
+            <div id="form">
+
+                <form action="/user_panel" method="POST">
+                    <label id="services">Services offerts par {{ name }}</label><br>
+                    <input name="shower" id="shower" type="checkbox"><label for="shower">Douches</label>
+                    <input name="bed" id="bed" type="checkbox"><label for="bed">Lits</label>
+                    <input name="food" id="food" type="checkbox"><label for="food">Nourriture</label>
+                    <input name="therapist" id="therapist" type="checkbox"><label for="therapist">Thérapeute</label>
+                    <br>
+                </form>
+
+            </div>
+
+            <div id="buttons">
+
+                <button type="submit">Soumettre</button>
+                <button>Voir</button>
+                <button type="reset">Effacer</button>
+
+            </div>
+
+        </fieldset>
+    </div>
+
+</div>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
-/* red :        #DB324D     */
-/*white :       #F3F7F0     */
+/* red :        #DB324D     /
+/white :       #F3F7F0     */
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap%27");
 
 html, body {
     background-color: black;
