@@ -96,11 +96,10 @@ def create_database():
             ''')
     c.execute('''
             CREATE TABLE IF NOT EXISTS auth
-            ([shelter_id] INTEGER PRIMARY KEY, 
-            [name] VARCHAR(100) NOT NULL,
-            [adress] VARCHAR(100) NOT NULL,
-            [email] VARCHAR(100) NOT NULL,
-            [tel] VARCHAR(100) NOT NULL
+            ([auth_id] INTEGER PRIMARY KEY, 
+            [username] VARCHAR(100) NOT NULL,
+            [token] VARCHAR(100) NOT NULL,
+            [expiry] DATETIME NOT NULL
             )
             ''')       
     conn.commit()
