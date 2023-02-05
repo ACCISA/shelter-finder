@@ -81,6 +81,7 @@ def Debug():
     print("db created")
     print(database.get_shelters())
     datainsert.create_bs_shelters()
+    datainsert.create_bs_shelters_info()
     shelter.closer_shelter()
 
 def test_connection():
