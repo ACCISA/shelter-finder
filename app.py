@@ -77,6 +77,7 @@ def testdone():
 def Debug():
     database.create_database()
     print("db created")
+    print(database.get_shelters())
 
 
 Debug()

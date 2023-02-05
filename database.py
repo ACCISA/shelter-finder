@@ -5,13 +5,20 @@ from func import Hash
 
 
 
-conn = sqlite3.connect('shelter_finder.db') 
+conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
 c = conn.cursor()
+def connection():
+    conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
+    c = conn.cursor()
+    return c
+
 
 
 def create_user(username, password, email, shelter):
+    
     if(verify_user(username)):
         return False
+    c=connection()
     user=[username,password,email,shelter]
     sql = ''' INSERT INTO user(username,password,email,shelter)
               VALUES(?,?,?,?) '''
@@ -25,12 +32,14 @@ def create_user(username, password, email, shelter):
     return True
 
 
-def create_shelter(name, long, lat, adress, email, tel):
-    args = [name, long, lat, adress, email, tel]
+def create_shelter(name, long, lat, adress, email, tel, logo):
+    
+    args = [name, long, lat, adress, email, tel, logo]
     if (verify_shelter(args)):
         return False
-    sql = ''' INSERT INTO shelter(name,long,lat,email,tel)
-              VALUES(?,?,?,?,?) '''
+    c=connection()
+    sql = ''' INSERT INTO shelters(name,long,lat,adress,email,tel,logo)
+              VALUES(?,?,?,?,?,?,?) '''
     
 
     
@@ -40,18 +49,19 @@ def create_shelter(name, long, lat, adress, email, tel):
             raise Exception("Arguments cannot be null")
         if arg==long or arg==lat:
             if not isinstance(arg, float):
-                raise Exception("Longitude or Latitude has to be a number") 
+                raise Exception("Longitude or Latitude has to be a number")
+            continue
         if not isinstance(arg, str):
             raise Exception("Shelter must be a string")
         
 
-    c.execute((sql, name, long, lat, adress, email, tel))
+    c.execute((sql, name, long, lat, adress, email, tel, logo))
     conn.commit()
     conn.close()
     return True
 
 def create_shelter_info(shelter_info):
-
+    c=connection()
     sql = ''' INSERT INTO shelter_info(shelter,shower,bed,food,therapist)
               VALUES(?,?,?,?,?) '''
     
@@ -67,7 +77,15 @@ def create_shelter_info(shelter_info):
     conn.commit()
     conn.close()
 
+def get_shelters():
+    c=connection()
+    c.execute("SELECT * FROM shelters") 
+    result= c.fetchall()
+    c.close()
+    return result
+
 def create_database():
+    c=connection()
     c.execute('''
             CREATE TABLE IF NOT EXISTS users  (user_id INTEGER PRIMARY KEY, 
             username VARCHAR(110) NOT NULL, 
@@ -83,7 +101,8 @@ def create_database():
             [long] VARCHAR(50) NOT NULL,
             [lat] VARCHAR(50) NOT NULL,
             [email] VARCHAR(100) NOT NULL,
-            [tel] VARCHAR(100) NOT NULL
+            [tel] VARCHAR(100) NOT NULL,
+            [logo] VARCHAR(100) NOT NULL
             )
             ''')
 
