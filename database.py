@@ -1,6 +1,8 @@
 import hashlib
 import sqlite3
 from verification import verify_user
+from verification import verify_shelter
+
 
 def Hash(word):
     #
@@ -28,13 +30,15 @@ def create_user(username, password, email, shelter):
     return True
 
 
-def create_shelter(shelter, name, adress, email):
-
+def create_shelter(name, adress, email, tel):
+    args = [name, adress, email, tel]
+    if (verify_shelter(args)):
+        return False
     sql = ''' INSERT INTO shelter(name,adress,email,tel)
               VALUES(?,?,?,?) '''
     
 
-    args = [shelter, name, adress, email]
+    
 
     for arg in args:
         if not isinstance(arg, str):
@@ -42,8 +46,9 @@ def create_shelter(shelter, name, adress, email):
         if arg == None or arg == "":
             raise Exception("Arguments cannot be null")
 
-    c.execute(sql, shelter, name, adress, email)
+    c.execute(sql, name, adress, email, tel)
     conn.commit()
+    return True
 
 def create_shelter_info(conn, shelter_info):
 
