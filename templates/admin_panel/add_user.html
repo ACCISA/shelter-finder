@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,36 @@
     <title>Admin Panel</title>
     <link rel="stylesheet" href="/static/admin_panel/add_user.css">
 </head>
+
 <body>
-    <div id="adduser"><form action="/admin_panel" method="POST">
-        <input class="inputClass" type="text" name="username" placeholder="Username">
-        <input class="inputClass" type="password" name="password" placeholder="Password">
-        <input class="inputClass" type="password" name="confirm_password" placeholder="Confirm Password">
-        <input class="inputClass" type="text" name="email" placeholder="Email">
-        <input class="inputClass" type="text" name="shelter_name" placeholder="Shelter Name">
-        <input class="inputClass" id="submitBtn" type="submit">
-    </form></div>
-    
+
+    <div class="box">
+        <div class="user-img"></div>
+
+        <div id="adduser">
+            <form action="/admin_panel" method="POST">
+                <ul class="list">
+
+                    <li>
+                        <h2>Ajouter un utilisateur</h2>
+                    </li>
+                    <li>
+                        <input class="inputClass" type="text" name="username" placeholder="Username">
+                    </li>
+
+                    <li> <input type="password" class="inputClass"  name="password" placeholder="Password"></li>
+                    <li><input  type="password"class="inputClass"  name="confirm_password"
+                            placeholder="Confirm Password"></li>
+                    <li> <input type="text" class="inputClass" name="email" placeholder="Email"></li>
+                    <li><input type="text" class="inputClass"  name="shelter_name" placeholder="Shelter Name"></li>
+                    <li> <input type="submit" class="inputClass" id="submitBtn" ></li>
+
+                </ul>
+            </form>
+        </div>
+    </div>
+
+
 </body>
+
 </html>
