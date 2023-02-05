@@ -50,16 +50,18 @@ def returnLogin():
             return redirect("/admin_panel?token="+token)
             # return render_template("admin_panel/admin.html",warning={'token':tokenR})
         if auth.verifyUser(username, password):
-            # user_info = database.UserInfo(username) TODO
-            tokenR = token_auth.create()
-            token_auth.store(username, tokenR)
-        # TODO    return render_template("user_panel/user.html",info={'username':username,'shelter':user_info[0]})        
-            return render_template("user_panel/user.html")
+
+            return redirect("/user_panel")
         return render_template("login.html", warning={'message':'Invalid username or password.'})
 
 @app.route("/board", methods=['GET','POST'])
 def returnBoard():
     return render_template("board.html", shelter = {'name':'abc'})
+
+@app.route("/user_panel", methods=['GET','POST'])
+def returnUserPanel():
+    if request.method == 'GET':
+        return render_template("user_panel/user.html")
 
 @app.route("/admin_panel", methods=['GET','POST'])
 def returnAdminPanel():
