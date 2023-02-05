@@ -8,19 +8,23 @@
     </head>
     <body>
 
-    Name : "{{ name }}"| <br>
-    URL : "{{ image }}"| <br>
-    Latitude : "{{ latitude }}"| <br>
-    Longitude : "{{ longitude }}"|
-
     <div id="main-div">
+
+        <div id="header-header">
+
+            <p>Pour en apprendre plus à notre sujet,<br>visitez notre site internet!</p>
+            <img id="logo" src="static/logos/logo.jpg" alt="logo">
+
+        </div>
 
         <div id="top-div">
 
-            <div id="name">
-                {{ name }}
+            <div id="header">
+                <div id="name">
+                    {{ name }}<br>
+                    <p>vous accueille!</p>
+                </div>
             </div>
-            <img alt="Shelter image" src="/static/logos/Resilience.jpg">
 
             <img alt="Shelter image" src="{{ image }}">
 
@@ -39,9 +43,9 @@
                         allowfullscreen
                         referrerpolicy="no-referrer-when-downgrade"
                         src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBSJNoW5llJQRKszzkYCNx3TzdgopIklA4
-    &destination={{ latitude }},{{ longitude }}
-    &origin=45.50418693241608,-73.61360121950645
-    &mode=walking&zoom=15
+    &destination={{ address }}
+    &origin=2500+Chem+de+Polytechnique+Montréal+QC+H3T+1J4
+    &mode=walking&zoom=13
 ">
                 </iframe>
             </div>

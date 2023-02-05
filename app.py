@@ -1,14 +1,13 @@
 from flask import Flask, request, jsonify, make_response, render_template, session
 from datetime import datetime, timedelta
 from functools import wraps
-import database
-import auth
-import datainsert
-import shelter
-import token_auth
+import database, auth, math, datainsert, token_auth
 from auth import auth_required
 app = Flask(__name__)
 app.config["SECRET_KEY"] = 'bbb07774f2284417a9303684df7c1470'
+
+lat = 45.50418693241608
+long = -73.61360121950645
 
 
 @app.route("/")
@@ -40,7 +39,18 @@ def returnLogin():
 
 @app.route("/board", methods=['GET','POST'])
 def returnBoard():
-    return render_template("board.html", shelter = {'name':'abc'})
+    shelters = database.get_shelters()
+    distances = []
+    for i in range(0, 4):
+        distances.append(math.sqrt((float(shelters[i][3]) - lat) ** 2 + (float(shelters[i][4]) - long) ** 2))
+
+    closest = shelters[distances.index(min(distances))]
+    closest = shelters[3]
+
+    return render_template('board.html', name=closest[1], image=closest[7], address=closest[2])
+
+    # return shelters[distances.index(distances.min())]
+    # return render_template("board.html", shelter = {'name':'abc'})
 
 @app.route("/admin_panel", methods=['GET','POST'])
 def returnAdminPanel():
@@ -82,7 +92,6 @@ def Debug():
     print(database.get_shelters())
     datainsert.create_bs_shelters()
     datainsert.create_bs_shelters_info()
-    shelter.closer_shelter()
 
 def test_connection():
     with app.app_context():

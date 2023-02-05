@@ -14,21 +14,60 @@ html, body {
     align-items: center;
 }
 
+#header-header {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
 #map {
     height: 90%;
 }
 
 #main-div {
-    background-color: #DB324D;
+    background-color: #2B60AC;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
     width: 450px;
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+}
+
+#logo {
+    width: 90px;
+    height: 90px;
+    margin-left: 20px;
+}
+
+#name > p {
+    font-size: 70%;
+}
+
+#name {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #top-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    font-size: 200%;
+    font-weight: bold;
     height: 100%;
 }
 
@@ -42,6 +81,7 @@ html, body {
 
 hr {
     height: 2px;
+    margin-top: 20px;
     width: 70%;
     color: #FEFAE0;
     border: 0;
