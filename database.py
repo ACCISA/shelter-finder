@@ -1,4 +1,3 @@
-import hashlib
 import sqlite3
 from verification import verify_user, verify_shelter
 
@@ -22,6 +21,7 @@ def create_user(username, password, email, shelter):
             raise Exception("a parameter in user is not a string")
     c.execute(sql, username, password, email, shelter)
     conn.commit()
+    conn.close()
     return True
 
 
@@ -47,6 +47,7 @@ def create_shelter(name, long, lat, adress, email, tel):
 
     c.execute(sql, name, long, lat, adress, email, tel)
     conn.commit()
+    conn.close()
     return True
 
 def create_shelter_info(conn, shelter_info):
@@ -64,6 +65,7 @@ def create_shelter_info(conn, shelter_info):
 
     c.execute(sql, shelter_info[0], shelter_info[1], shelter_info[2], shelter_info[3], shelter_info[4])
     conn.commit()
+    conn.close()
 
 def create_database():
     c.execute('''
@@ -103,4 +105,5 @@ def create_database():
             )
             ''')       
     conn.commit()
+    conn.close()
 
