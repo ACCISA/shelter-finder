@@ -84,6 +84,13 @@ def get_shelters():
     c.close()
     return result
 
+def get_shelters_names():
+    c=connection()
+    c.execute("SELECT name FROM shelters") 
+    result= c.fetchall()
+    c.close()
+    return result
+
 def create_database():
     c=connection()
     c.execute('''
