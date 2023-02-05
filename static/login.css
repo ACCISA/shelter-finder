@@ -32,7 +32,7 @@ ul.list li input{
     background-color: #d3d3d3;
     border-radius: 5px;
 }
-ul.list li input[type="button"]{
+ul.list li input[type="submit"]{
     background-color: rgb(215, 228, 41);
 }
 .user-img{
