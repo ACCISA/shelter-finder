@@ -22,6 +22,7 @@ def returnLogin():
         return render_template("login.html",warning={'message':''})
     if request.method == 'POST':
         if username == None or password == None or confirm_password == None:
+            print('[APP] No Login Info')
             return render_template("login.html", warning={'message':'Please provide a valid username and password.'})
         if auth.verifyRoot(username, password):
             tokenR = token_auth.create()
@@ -33,6 +34,7 @@ def returnLogin():
             token_auth.store(tokenR)
         # TODO    return render_template("user_panel/user.html",info={'username':username,'shelter':user_info[0]})        
             return render_template("user_panel/user.html")
+        return render_template("login.html", warning={'message':'Invalid username or password.'})
 
 @app.route("/board", methods=['GET','POST'])
 def returnBoard():
