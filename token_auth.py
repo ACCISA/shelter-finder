@@ -6,8 +6,7 @@ conn = sqlite3.connect('shelter_finder.db', check_same_thread=False)
 c = conn.cursor()
 def connection():
     conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
-    c = conn.cursor()
-    return c
+    return conn
 
 
 # create a token
