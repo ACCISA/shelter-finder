@@ -1,8 +1,11 @@
 import sqlite3
-from database import conn
-from database import Hash
+from func import Hash
 
-c=conn.cursor()
+conn = sqlite3.connect('shelter_finder.db') 
+c = conn.cursor()
+
+
+
 def verify_shelter(shelter):
     c.execute("SELECT shelter_id FROM shelters WHERE shelter=%(shelter)s",{"shelter":shelter}) 
     result= c.fetchone()

@@ -11,21 +11,18 @@ app.config["SECRET_KEY"] = 'bbb07774f2284417a9303684df7c1470'
 
 @app.route("/")
 def returnMainWebsite():
-    return render_template("index.html")
+    return render_template("frontPage.html")
 
 @app.route("/login", methods=['GET','POST'])
 def returnLogin():
     username = request.form.get('username')
     password = request.form.get('password')
-    confirm_password = request.form.get('confirm_password')
 
     if request.method == 'GET':
-        return render_template("login.html")
+        return render_template("login.html",warning={'message':''})
     if request.method == 'POST':
         if username == None or password == None or confirm_password == None:
             return render_template("login.html", warning={'message':'Please provide a valid username and password.'})
-        if passowrd != confirm_password: # TO REMOVE
-            return render_template("login.html", warning={'message':'Password do not match.'})
         if auth.verifyRoot(username, password):
             tokenR = token_auth.create()
             token_auth.store(tokenR)

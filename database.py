@@ -1,12 +1,7 @@
 import hashlib
 import sqlite3
 from verification import verify_user
-
-def Hash(word):
-    #
-    # encode it to bytes using UTF-8 encoding
-    hashed = hashlib.sha256(word.encode()).hexdigest()
-    return hashed
+from func import Hash
 
 
 conn = sqlite3.connect('shelter_finder.db') 
