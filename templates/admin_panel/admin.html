@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="/static/admin_panel/admin.css">
-
+    <script src="/static/admin_panel/js/http_request.js"></script>
 </head>
 
     <body>
@@ -53,6 +53,7 @@
           </table>
     </div>
     <div class="box">
+        <p id="hidden_token" style="color: transparent">{{warning.token}}</p>
         <div class="user-img"></div>
         <div class="user-img2"></div>
         <form action="/admin_panel" method="POST">
@@ -64,7 +65,7 @@
                 <li><input type="submit" name="add_user" value="Add User"> </li>
 
                 <li> <input type="submit" name="add_shelter" value="Add Shelter"></li>
-
+                <button onclick="postData()"> Test </button>
             </ul>
         </form>
     </div>

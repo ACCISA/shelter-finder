@@ -126,7 +126,7 @@ def create_database():
             CREATE TABLE IF NOT EXISTS auth
             ([auth_id] INTEGER PRIMARY KEY, 
             [username] VARCHAR(100) NOT NULL,
-            [token] VARCHAR(100) NOT NULL,
+            [token] VARCHAR(200) NOT NULL,
             [expiry] DATETIME NOT NULL
             )
             ''')       
