@@ -1,0 +1,47 @@
+*{margin:0; padding:0}
+body {
+    background-size: cover;
+    background-image: url("https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg") ;
+    padding-top: 25vh;
+}
+.box {
+    padding:40px 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 0 10px 0 black;
+    height: auto;
+    margin: auto;  
+    position: relative;
+}
+
+ul.list{
+    list-style-type: none;
+    text-align: center;
+    
+}
+ul.list li{
+    width: 250px;
+    margin-bottom: 30px;
+}
+ul.list li input{
+    width: 250px;
+    padding:8px 0px;
+    text-align: center;
+    border: none;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+}
+ul.list li input[type="submit"]{
+    background-color: rgb(215, 228, 41);
+}
+.user-img{
+    background:url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/OOjs_UI_icon_lock-ltr-yellow.svg/1200px-OOjs_UI_icon_lock-ltr-yellow.svg.png") no-repeat;
+    width: 70px;
+    height: 70px;
+    background-size: 100%;
+    position: absolute;
+    top:-40px;
+    left:115px
+    
+}
