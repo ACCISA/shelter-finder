@@ -241,7 +241,6 @@ input[type="submit"]{
   
 }
 .missionImg{
-  object-fit: cover;
   width: 100%;
-  background-size: 100%;
+  height:99.9%;
 }
