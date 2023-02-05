@@ -7,9 +7,11 @@ c = conn.cursor()
 
 
 def verify_shelter(name):
-    c.execute("SELECT shelter_id FROM shelters WHERE name=%(name)s",{"name":name}) 
+    sql = "SELECT shelter_id FROM shelters WHERE name=?"
+    val = (name,)
+    c.execute(sql,val)
     result= c.fetchone()
-    conn.close()
+    # conn.close()
     if result== None:
         return False
     return True
