@@ -17,17 +17,18 @@ def create_user(username, password, email, shelter):
     
     if(verify_user(username)):
         return False
-    c=connection()
-    user=[username,Hash(password),email,shelter] #here it isw2xxx22
-    sql = ''' INSERT INTO user(username,password,email,shelter)
+    co=connection()
+    c = co.cursor()
+    user=[username,password,email,shelter] #here it isw2xxx22
+    sql = ''' INSERT INTO users(username,password,email,shelter)
               VALUES(?,?,?,?) '''
         
     for parameter in user:
-        if  isinstance(parameter,str):
+        if not isinstance(parameter,str):
             raise Exception("a parameter in user is not a string")
-    c.execute((sql, username, password, email, shelter))
-    conn.commit()
-    conn.close()
+    c.execute(sql, (username, Hash(password), email, shelter))
+    co.commit()
+    co.close()
     return True
 
 

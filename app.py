@@ -70,10 +70,11 @@ def returnAdminPanel():
         print("admin panel get")
         return render_template("admin_panel/admin.html",info={'token':token})
     if request.method == 'POST':
-        if request.form['goto'] == "Add User":
+        if request.form.get('goto') == "Add User":
             return render_template("admin_panel/add_user.html",warning={'message':'','token':token})
-        if request.form['goto'] == "Add Shelter":
+        if request.form.get('goto') == "Add Shelter":
             return redirect("/admin_panel/add_shelter")
+        return "error"
     # return render_template("admin_panel/admin.html")
 
 @app.route("/admin_panel/add_shelter", methods=['GET','POST'])
@@ -82,6 +83,7 @@ def returnAdminPanelAddShelter():
     if request.method == 'GET':
         return render_template("admin_panel/add_shelter.html")
     if request.method == 'POST':
+        pass
         
 
 @app.route("/admin_panel/add_user", methods=['GET','POST'])
@@ -95,13 +97,19 @@ def returnAdminPanelAddUser():
         confirm_password = request.form.get('confirm_password')
         email = request.form.get('email')
         shelter_name = request.form.get('shelter_name')
+        print(username, password, confirm_password, email,shelter_name)
         
         if password == None or confirm_password == None or username == None or email == None or shelter_name == None:
-            return render_template("admin_panel/add_user.html",warnign={'msg':'Please provide all information.'})
+            return render_template("admin_panel/add_user.html",warning={'msg':'Please provide all information.'})
+
+        if password == "" or confirm_password == "" or username == "" or email == "" or shelter_name == "":
+            return render_template("admin_panel/add_user.html",warning={'msg':'Please provide all information.'})
+
 
         if password != confirm_password:
             return render_template("admin_panel/add_user.html",warning={'msg':'Password do no match.'})
-        database.add_user(username, password, email, shelter_name)
+        if database.create_user(str(username), str(password), str(email), str(shelter_name)):
+            return render_template("admin_panel/add_user.html", warning={'msg':'User account created'})
 
 @app.route("/test",methods=['GET','POST'])
 def testing():

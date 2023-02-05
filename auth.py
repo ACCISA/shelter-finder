@@ -2,8 +2,17 @@ from flask import Flask, request, jsonify, make_response, render_template, sessi
 from datetime import datetime, timedelta
 from functools import wraps
 import database
+import sqlite3
 import token_auth
 import func
+
+conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
+c = conn.cursor()
+def connection():
+    conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
+    return conn
+
+
 
 def auth_required(tokenR):
     if not token_auth.find(tokenR):
@@ -11,11 +20,19 @@ def auth_required(tokenR):
     return True
 
 def verifyUser(username, password):
-    username = database.Hash(username)
-    password = database.Hash(password)
-    # TODO RICHARD
-    # find if the username and passowrd are true
-    # if true return True
+    co = connection()
+    c = co.cursor()
+    password = func.Hash(password)
+    sql = "SELECT username, password FROM users WHERE username =? "
+    val = (username,)
+    c.execute(sql,val)
+    result = c.fetchone()
+    if result == None:
+        return False
+    if result[0] == username and result[1] == password:
+        return True
+    return False
+ 
 
 def verifyRoot(username, password):
     username = func.Hash(username)
