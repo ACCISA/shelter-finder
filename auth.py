@@ -41,3 +41,12 @@ def verifyRoot(username, password):
         print('[APP] Root access granted')
         return True
     return False
+
+def getUser(username):
+    c=connection()
+    sql="SELECT shelter FROM users WHERE username=?"
+    val=(username,)
+    c.execute(sql,val)
+    result= c.fetchone()
+    c.close()
+    return result[0]
