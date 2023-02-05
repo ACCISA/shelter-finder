@@ -60,40 +60,32 @@ def create_shelter(name, long, lat, adress, email, tel, logo):
     conn.close()
     return True
 
-def create_shelter_info(shelter_info):
-    c=connection()
-    sql = ''' INSERT INTO shelter_info(shelter,shower,bed,food,therapist)
-              VALUES(?,?,?,?,?) '''
-    
-    if  isinstance(shelter_info[0],str):
-        raise Exception("shelter in shelter_info is not a string")
 
-    for i in range(len(shelter_info)):
-        if i == 0: continue
-        if shelter_info[i] != 0 or shelter_info[i] != 1:
-            raise Exception("Shelter info must be 0 or 1")
+def create_shelter_info(name, shower, bed, food, therapist):
+    args = [name, shower, bed, food, therapist]
+    if (verify_shelter(args[0])):
+        return False
 
-    c.execute((sql, shelter_info[0], shelter_info[1], shelter_info[2], shelter_info[3], shelter_info[4]))
-    conn.commit()
-    conn.close()
+    co = connection()
+    c = co.cursor()
+    sql = '''INSERT INTO shelters(name,shower,bed,food,therapist)
+                  VALUES(?,?,?,?,?)'''
 
-def update_shelter_info(shelter_info):
-    co=connection()
-    c=co.cursor()
-    sql = ''' UPDATE shelter_info SET shelter={},shower={},bed={},food={},therapist={})
-              '''.format(shelter_info[0],shelter_info[1],shelter_info[2],shelter_info[3],shelter_info[5])
-    
-    if  isinstance(shelter_info[0],str):
-        raise Exception("shelter in shelter_info is not a string")
+    for arg in args:
+        if arg == None or arg == "":
+            raise Exception("Arguments cannot be null")
+        if arg == shower or arg == bed or arg==food or arg==therapist:
+            if not arg==0 and not arg==1:
+                raise Exception("Longitude or Latitude has to be a number")
+            continue
+        if not isinstance(arg, str):
+            raise Exception("Shelter must be a string")
 
-    for i in range(len(shelter_info)):
-        if i == 0: continue
-        if shelter_info[i] != 0 or shelter_info[i] != 1:
-            raise Exception("Shelter info must be 0 or 1")
-
-    c.execute((sql,))
+    c.execute(sql, (name, shower, bed, food, therapist))
     co.commit()
     co.close()
+    return True
+
 
 def get_shelters():
     c=connection()
