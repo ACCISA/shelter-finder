@@ -6,8 +6,8 @@ c = conn.cursor()
 
 
 
-def verify_shelter(shelter):
-    c.execute("SELECT shelter_id FROM shelters WHERE shelter=%(shelter)s",{"shelter":shelter}) 
+def verify_shelter(name):
+    c.execute("SELECT shelter_id FROM shelters WHERE name=%(name)s",{"name":name}) 
     result= c.fetchone()
     conn.close()
     if result== None:
@@ -19,7 +19,7 @@ def verify_user(user):
     u=Hash(user)
     c.execute("SELECT user_id FROM users WHERE user=%(u)s",{"u":u}) 
     result= c.fetchone()
-    con.close()
+    conn.close()
     if result== None:
         return False
     return True
