@@ -1,70 +1,66 @@
 import sqlite3
+
 from verification import verify_user, verify_shelter
 
-from func import Hash
-
-
-
-conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
+conn = sqlite3.connect('shelter_finder.db', check_same_thread=False)
 c = conn.cursor()
+
+
 def connection():
-    conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
+    conn = sqlite3.connect('shelter_finder.db', check_same_thread=False)
     return conn
 
 
-
 def create_user(username, password, email, shelter):
-    
-    if(verify_user(username)):
+    if (verify_user(username)):
         return False
-    c=connection()
-    user=[username,Hash(password),email,shelter]
+    co = connection()
+    c = co.cursor()
+    user = [username, password, email, shelter]
     sql = ''' INSERT INTO user(username,password,email,shelter)
               VALUES(?,?,?,?) '''
-        
+
     for parameter in user:
-        if  isinstance(parameter,str):
+        if isinstance(parameter, str):
             raise Exception("a parameter in user is not a string")
     c.execute((sql, username, password, email, shelter))
-    conn.commit()
+    co.commit()
     conn.close()
     return True
 
 
 def create_shelter(name, long, lat, adress, email, tel, logo):
-    
     args = [name, long, lat, adress, email, tel, logo]
-    if (verify_shelter(args)):
+    if (verify_shelter(args[0])):
         return False
-    c=connection()
-    sql = ''' INSERT INTO shelters(name,long,lat,adress,email,tel,logo)
-              VALUES(?,?,?,?,?,?,?) '''
-    
-
-    
+    co = connection()
+    c = co.cursor()
+    sql = '''INSERT INTO shelters(name,long,lat,adress,email,tel,logo)
+              VALUES(?,?,?,?,?,?,?)'''
 
     for arg in args:
         if arg == None or arg == "":
             raise Exception("Arguments cannot be null")
-        if arg==long or arg==lat:
+        if arg == long or arg == lat:
             if not isinstance(arg, float):
                 raise Exception("Longitude or Latitude has to be a number")
             continue
         if not isinstance(arg, str):
             raise Exception("Shelter must be a string")
-        
 
-    c.execute((sql, name, long, lat, adress, email, tel, logo))
-    conn.commit()
-    conn.close()
+    c.execute(sql, (name, long, lat, adress, email, tel, logo))
+    co.commit()
+    co.close()
     return True
 
+
 def create_shelter_info(shelter_info):
-    c=connection()
+    co = connection()
+    c = co.cursor()
     sql = ''' INSERT INTO shelter_info(shelter,shower,bed,food,therapist)
               VALUES(?,?,?,?,?) '''
-    
-    if  isinstance(shelter_info[0],str):
+
+    if isinstance(shelter_info[0], str):
         raise Exception("shelter in shelter_info is not a string")
 
     for i in range(len(shelter_info)):
@@ -76,22 +72,18 @@ def create_shelter_info(shelter_info):
     conn.commit()
     conn.close()
 
+
 def get_shelters():
-    c=connection()
-    c.execute("SELECT * FROM shelters") 
-    result= c.fetchall()
+    co = connection()
+    c = co.cursor()
+    c.execute("SELECT * FROM shelters")
+    result = c.fetchall()
     c.close()
     return result
 
-def get_shelters_names():
-    c=connection()
-    c.execute("SELECT name FROM shelters") 
-    result= c.fetchall()
-    c.close()
-    return result
 
 def create_database():
-    c=connection()
+    c = connection()
     c.execute('''
             CREATE TABLE IF NOT EXISTS users  (user_id INTEGER PRIMARY KEY, 
             username VARCHAR(110) NOT NULL, 
@@ -129,7 +121,6 @@ def create_database():
             [token] VARCHAR(200) NOT NULL,
             [expiry] DATETIME NOT NULL
             )
-            ''')       
+            ''')
     conn.commit()
     conn.close()
-

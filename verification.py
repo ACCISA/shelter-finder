@@ -4,24 +4,21 @@ from func import Hash
 conn = sqlite3.connect('shelter_finder.db') 
 c = conn.cursor()
 
-def connection():
-    conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
-    return conn
 
 
 def verify_shelter(name):
-    co=connection()
-    c=co.cursor()
-    c.execute("SELECT shelter_id FROM shelters WHERE name=%(name)s",{"name":name}) 
+    sql = "SELECT shelter_id FROM shelters WHERE name=?"
+    val = (name,)
+    c.execute(sql,val)
     result= c.fetchone()
-    conn.close()
+    # conn.close()
     if result== None:
         return False
     return True
     
 
 def verify_user(user):
-    u=user
+    u=Hash(user)
     c.execute("SELECT user_id FROM users WHERE user=%(u)s",{"u":u}) 
     result= c.fetchone()
     conn.close()
