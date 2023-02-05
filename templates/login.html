@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="/static/login.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>Login Page</h1>
-    <p>{{warning.message}}</p>
-    <form action="/login" method="POST">
-        <input type="text" placeholder="Username" name="username">
-        <input type="password" placeholder="Password" name="password">
-        <input type="submit">
+
+
+    <div class="box">
+        <div class="user-img"></div>
+        <form action="/login" method="POST">
+            <ul class="list">
+                <li>
+                    <h2>Login Page</h2>
+                </li>
+
+                <li> <input type="text" name="Username" placeholder="Username"></li>
+
+                <li> <input type="password" name="Password" placeholder="........"></li>
+
+                <li><input type="button" name="Submit" value="Submit"></li>
+                <p>{{warning.message}}</p>
+            </ul>
+
+
+    </div>
     </form>
 </body>
+
 </html>
