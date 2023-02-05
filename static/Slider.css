@@ -3,7 +3,8 @@
 html,
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: #DB324D
+  background-size: cover;
+  background-image: url("https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg") ;
 }
 
 .whiteBackground {

@@ -43,6 +43,8 @@ def returnBoard():
 @app.route("/admin_panel", methods=['GET','POST'])
 def returnAdminPanel():
     tokenR = request.args.get('token')
+    if tokenR == None:
+        return "Not Authed"
     if request.method == 'GET':
         if not auth.auth_required(tokenR):
             return "Not Authed"
