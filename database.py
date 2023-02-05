@@ -75,12 +75,13 @@ def create_database():
             email VARCHAR(50) NOT NULL,
             shelter VARCHAR(50) NOT NULL)
             ''')
-            
     c.execute('''
             CREATE TABLE IF NOT EXISTS shelters
             ([shelter_id] INTEGER PRIMARY KEY, 
             [name] VARCHAR(100) NOT NULL,
             [adress] VARCHAR(100) NOT NULL,
+            [long] VARCHAR(50) NOT NULL,
+            [lat] VARCHAR(50) NOT NULL,
             [email] VARCHAR(100) NOT NULL,
             [tel] VARCHAR(100) NOT NULL
             )
