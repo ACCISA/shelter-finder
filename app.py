@@ -62,39 +62,46 @@ def returnBoard():
     return render_template("board.html", shelter = {'name':'abc'})
 
 @app.route("/admin_panel", methods=['GET','POST'])
-@token_required
 def returnAdminPanel():
-    token = request.args.get('token')
+    token = 2
     if request.method == 'GET':
         # if not auth.auth_required(tokenR):
         #     return render_template("login.html",warning={'message':''})
-        return render_template("admin_panel/admin.html",warning={'token':token})
+        print("admin panel get")
+        return render_template("admin_panel/admin.html",info={'token':token})
     if request.method == 'POST':
-        print("form called")
-        if request.form['add_user'] == "Add User":
-            print("add user redirect")
+        if request.form['goto'] == "Add User":
             return render_template("admin_panel/add_user.html",warning={'message':'','token':token})
-        if request.form['add_shelter'] == "Add Shelter":
-            print("redirect to add shelter " + token)
-            return redirect("/admin_panel/add_shelter?token="+token)
+        if request.form['goto'] == "Add Shelter":
+            return redirect("/admin_panel/add_shelter")
     # return render_template("admin_panel/admin.html")
 
 @app.route("/admin_panel/add_shelter", methods=['GET','POST'])
-@token_required
 def returnAdminPanelAddShelter():
-    token = request.args.get('token')
-    print(token)
+
     if request.method == 'GET':
-        return render_template("admin_panel/add_shelter.html",warning={'token':token})
+        return render_template("admin_panel/add_shelter.html")
     if request.method == 'POST':
-        pass
-        # cont = request.json
-        # tokenr = cont['token']
-        # if not auth.auth_required(tokenr):
-        #     print("[APP] Invalid Token")
-        #     return render_template("login.html",warning={'message':''})
-        # print("redirect ")
-        # return render_template("admin_panel/add_shelter.html")
+        
+
+@app.route("/admin_panel/add_user", methods=['GET','POST'])
+def returnAdminPanelAddUser():
+    
+    if request.method == 'GET':
+        return render_template("admin_panel/add_user.html", warning={'msg':''})
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        email = request.form.get('email')
+        shelter_name = request.form.get('shelter_name')
+        
+        if password == None or confirm_password == None or username == None or email == None or shelter_name == None:
+            return render_template("admin_panel/add_user.html",warnign={'msg':'Please provide all information.'})
+
+        if password != confirm_password:
+            return render_template("admin_panel/add_user.html",warning={'msg':'Password do no match.'})
+        database.add_user(username, password, email, shelter_name)
 
 @app.route("/test",methods=['GET','POST'])
 def testing():
