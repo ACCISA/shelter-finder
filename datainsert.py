@@ -10,7 +10,7 @@ def create_bs_shelters():
                             '4561+Notre-Dame+St+W+Montreal+Quebec+H4C+1S3',
                             'truc@com', '+15149375973', '/static/logos/Benoit.jpg')
 
-    database.create_shelter('La Maison des Femmes', 45.474762190767294, -73.58785898176345,
+    database.create_shelter('La Maison des Femmes', 45.5049896884291, -73.63689422765832,
                             '6767+Chemin+de+la+Côte+des+Neiges+Montréal+QC+H3S+2T6',
                             'truc@com', '+15147359027', '/static/logos/femmes.jpg')
 
