@@ -24,6 +24,7 @@ def validate(date, token):
     # token is expired so remove it from the database
     sql = "DELETE FROM auth WHERE token = %s"
     c.execute(sql,token)
+    con.commit()
     conn.close()
     print("[APP] Token expired, Token delete from database")
     return False
