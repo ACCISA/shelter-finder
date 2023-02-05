@@ -35,9 +35,9 @@ def create_user(username, password, email, shelter):
 def create_shelter(name, long, lat, adress, email, tel, logo):
     
     args = [name, long, lat, adress, email, tel, logo]
-    if (verify_shelter(args)):
+    if (verify_shelter(args[0])):
         return False
-    c=connection()
+    co=connection()
     sql = ''' INSERT INTO shelters(name,long,lat,adress,email,tel,logo)
               VALUES(?,?,?,?,?,?,?) '''
     
@@ -54,10 +54,10 @@ def create_shelter(name, long, lat, adress, email, tel, logo):
         if not isinstance(arg, str):
             raise Exception("Shelter must be a string")
         
-
-    c.execute((sql, name, long, lat, adress, email, tel, logo))
-    conn.commit()
-    conn.close()
+    c=co.cursor()
+    c.execute(sql, (name, long, lat, adress, email, tel, logo))
+    co.commit()
+    co.close()
     return True
 
 
@@ -88,14 +88,16 @@ def create_shelter_info(name, shower, bed, food, therapist):
 
 
 def get_shelters():
-    c=connection()
+    co=connection()
+    c=co.cursor()
     c.execute("SELECT * FROM shelters") 
     result= c.fetchall()
     c.close()
     return result
 
 def get_shelters_info():
-    c=connection()
+    co=connection()
+    c=co.cursor()
     c.execute("SELECT * FROM shelter_info") 
     result= c.fetchall()
     c.close()

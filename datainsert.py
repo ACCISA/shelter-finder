@@ -11,7 +11,7 @@ def create_bs_shelters():
                             'truc@com', '+15149375973', '/static/logos/Benoit.jpg')
 
     database.create_shelter('La Maison des Femmes', 45.474762190767294, -73.58785898176345,
-                            '6767+Chem+de+la+Côte+des+Neiges+#597+Montréal+QC+H3S+2T6',
+                            '6767+Chemin+de+la+Côte+des+Neiges+Montréal+QC+H3S+2T6',
                             'truc@com', '+15147359027', '/static/logos/femmes.jpg')
 
     database.create_shelter('La Porte Ouverte', 45.51269980060793, -73.57470560878401,
