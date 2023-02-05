@@ -42,7 +42,7 @@ def board():
         distances.append(math.sqrt((float(shelters[i][3]) - lat) ** 2 + (float(shelters[i][4]) - long) ** 2))
 
     closest = shelters[distances.index(min(distances))]
-    closest = shelters[1]
+    closest = shelters[3]
 
     return render_template('board.html', name=closest[1], image=closest[7], address=closest[2])
 
