@@ -14,10 +14,6 @@ html, body {
     align-items: center;
 }
 
-#map {
-    height: 90%;
-}
-
 #main-div {
     background-color: #DB324D;
     display: flex;
@@ -29,7 +25,7 @@ html, body {
 }
 
 #top-div {
-    height: 100%;
+
 }
 
 #bottom-div {
@@ -37,7 +33,6 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
 }
 
 hr {

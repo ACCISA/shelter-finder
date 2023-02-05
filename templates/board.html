@@ -1,6 +1,4 @@
-{% block content %}
-
-    <html lang="en">
+ <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Shelter Finder board</title>
@@ -8,21 +6,15 @@
     </head>
     <body>
 
-    Name : "{{ name }}"| <br>
-    URL : "{{ image }}"| <br>
-    Latitude : "{{ latitude }}"| <br>
-    Longitude : "{{ longitude }}"|
-
     <div id="main-div">
 
         <div id="top-div">
 
             <div id="name">
-                {{ name }}
+                {{ shelter.name }}
             </div>
-            <img alt="Shelter image" src="/static/logos/Resilience.jpg">
 
-            <img alt="Shelter image" src="{{ image }}">
+            <img alt="Shelter image" src="{{ shelter.image }}">
 
         </div>
 
@@ -33,13 +25,13 @@
 
                 <iframe
                         width="400"
-                        height="300"
+                        height="450"
                         style="border:0"
                         loading="lazy"
                         allowfullscreen
                         referrerpolicy="no-referrer-when-downgrade"
                         src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBSJNoW5llJQRKszzkYCNx3TzdgopIklA4
-    &destination={{ latitude }},{{ longitude }}
+    &destination={{ shelter.latitude }},{{ shelter.longitude }}
     &origin=45.50418693241608,-73.61360121950645
     &mode=walking&zoom=15
 ">
@@ -51,5 +43,3 @@
 
     </body>
     </html>
-
-{% endblock %}
