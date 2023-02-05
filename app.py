@@ -50,8 +50,8 @@ def returnLogin():
             return redirect("/admin_panel?token="+token)
             # return render_template("admin_panel/admin.html",warning={'token':tokenR})
         if auth.verifyUser(username, password):
-
-            return redirect("/user_panel")
+            shelter_name = auth.getUser(username)
+            return redirect("/user_panel?shelter="+shelter_name)
         return render_template("login.html", warning={'message':'Invalid username or password.'})
 
 @app.route("/board", methods=['GET','POST'])
@@ -61,7 +61,13 @@ def returnBoard():
 @app.route("/user_panel", methods=['GET','POST'])
 def returnUserPanel():
     if request.method == 'GET':
-        return render_template("user_panel/user.html")
+        shelter_name = request.args.get('shelter')
+        return render_template("user_panel/user.html",info = {'shelter_name':shelter_name})
+    if request.method == 'POST':
+       shower = request.form.get('shower')
+       bed = request.form.get('bed')
+       food = request.form.get('food')
+       therapist = request.form.get('therapist')
 
 @app.route("/admin_panel", methods=['GET','POST'])
 def returnAdminPanel():
