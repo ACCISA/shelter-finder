@@ -9,8 +9,7 @@ conn = sqlite3.connect('shelter_finder.db', check_same_thread=False)
 c = conn.cursor()
 def connection():
     conn = sqlite3.connect('shelter_finder.db', check_same_thread=False) 
-    c = conn.cursor()
-    return c
+    return conn
 
 
 
@@ -19,7 +18,7 @@ def create_user(username, password, email, shelter):
     if(verify_user(username)):
         return False
     c=connection()
-    user=[username,password,email,shelter]
+    user=[username,Hash(password),email,shelter]
     sql = ''' INSERT INTO user(username,password,email,shelter)
               VALUES(?,?,?,?) '''
         
@@ -80,6 +79,13 @@ def create_shelter_info(shelter_info):
 def get_shelters():
     c=connection()
     c.execute("SELECT * FROM shelters") 
+    result= c.fetchall()
+    c.close()
+    return result
+
+def get_shelters_names():
+    c=connection()
+    c.execute("SELECT name FROM shelters") 
     result= c.fetchall()
     c.close()
     return result
