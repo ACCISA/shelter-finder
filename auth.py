@@ -2,11 +2,11 @@ from flask import Flask, request, jsonify, make_response, render_template, sessi
 from datetime import datetime, timedelta
 from functools import wraps
 import database
-import token
+import token_auth
 import func
 
 def auth_required(tokenR):
-    if not token.find(tokenR):
+    if not token_auth.find(tokenR):
         return False
     return True
 
